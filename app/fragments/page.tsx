@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { createPageMetadata } from "../siteMetadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Fragments",
+  description:
+    "Fragments, observations, marginalia, and literary notes from Sarcastikant and The Living Library.",
+  canonical: "/fragments"
+});
 
 const fragments = [
   "A city can be crowded and still emotionally abandoned.",

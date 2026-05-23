@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { createPageMetadata } from "../siteMetadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Systems",
+  description:
+    "Software systems, experiments, engineered worlds, and technical notes from Sarcastikant.",
+  canonical: "/systems"
+});
 
 export default function SystemsPage() {
   return (

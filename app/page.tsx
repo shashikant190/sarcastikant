@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { brand, createPageMetadata, siteDescription } from "./siteMetadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Sarcastikant",
+  description: siteDescription,
+  canonical: "/"
+});
 
 export default function Home() {
   const portals = [
@@ -26,12 +34,17 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_14%,rgba(193,155,90,0.16),transparent_25rem),radial-gradient(circle_at_76%_74%,rgba(52,71,85,0.22),transparent_27rem),linear-gradient(135deg,#080807_0%,#12100d_48%,#050505_100%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56 bg-gradient-to-b from-[#c98a3a14] to-transparent" />
       <div className="pointer-events-none absolute inset-0 -z-10 shadow-[inset_0_0_140px_rgba(0,0,0,0.78)]" />
+      <img
+        alt="Sarcastikant"
+        className="brand-signature pointer-events-none absolute left-6 top-6 z-10 w-28 opacity-70 md:left-10 md:top-9 md:w-36"
+        src={brand.logo}
+      />
 
       <section className="mx-auto flex min-h-screen w-full max-w-6xl items-center px-6 py-10 md:px-10">
         <div className="max-w-3xl">
           <p className="text-xs uppercase tracking-[0.34em] text-[#bda977]">SARCASTIKANT</p>
           <h1 className="mt-6 font-display text-5xl leading-[0.92] text-[#fff3d0] sm:text-7xl md:text-8xl">
-            || Neti Neti ||
+            Neti Neti
             <span className="block text-[#c9b98e]">Most of it sounds fictional anyway.</span>
           </h1>
           <p className="mt-7 max-w-xl text-base leading-8 text-[#b9ad95] sm:text-lg">
