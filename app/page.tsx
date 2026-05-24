@@ -42,7 +42,7 @@ export default function Home() {
 
       <section className="mx-auto flex min-h-screen w-full max-w-6xl items-center px-6 py-10 md:px-10">
         <div className="max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.34em] text-[#bda977]">SARCASTIKANT</p>
+          {/* <p className="text-xs uppercase tracking-[0.34em] text-[#bda977]">SARCASTIKANT</p> */}
           <h1 className="mt-6 font-display text-5xl leading-[0.92] text-[#fff3d0] sm:text-7xl md:text-8xl">
             Neti Neti
             <span className="block text-[#c9b98e]">Most of it sounds fictional anyway.</span>
