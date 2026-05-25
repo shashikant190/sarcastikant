@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import LiveVisitorIndicator from "@/components/LiveVisitorIndicator";
 import { brand, createPageMetadata, searchableIdentities, siteDescription } from "./siteMetadata";
 
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
@@ -53,7 +54,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <LiveVisitorIndicator />
+      </body>
     </html>
   );
 }
