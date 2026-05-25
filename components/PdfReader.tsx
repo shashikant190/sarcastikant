@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Home, Maximize2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Home, Maximize2, Minimize2 } from "lucide-react";
 import Link from "next/link";
 import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 
@@ -26,6 +26,7 @@ const createPage = (pageNumber: number | null): BookPage =>
 
 export default function PdfReader() {
   const [singlePageMode, setSinglePageMode] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const spreads = useMemo(() => {
     const result: Array<{ left: BookPage; right: BookPage; label: string }> = [];
 
@@ -75,6 +76,13 @@ export default function PdfReader() {
   useEffect(() => {
     setSpread((value) => clamp(value, 0, spreads.length - 1));
   }, [spreads.length]);
+
+  useEffect(() => {
+    const updateFullscreen = () => setIsFullscreen(Boolean(document.fullscreenElement));
+    updateFullscreen();
+    document.addEventListener("fullscreenchange", updateFullscreen);
+    return () => document.removeEventListener("fullscreenchange", updateFullscreen);
+  }, []);
 
   useEffect(() => {
     const nearbyPages = new Set<number>();
@@ -138,6 +146,15 @@ export default function PdfReader() {
     dragStart.current = null;
   };
 
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen?.();
+      return;
+    }
+
+    await document.documentElement.requestFullscreen?.();
+  };
+
   return (
     <main className="reader-shell">
       <div className="reader-atmosphere" aria-hidden="true">
@@ -166,12 +183,12 @@ export default function PdfReader() {
           </p>
         </div>
         <button
-          aria-label="Fullscreen"
+          aria-label={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
           className="reader-round-button"
-          onClick={() => document.documentElement.requestFullscreen?.()}
+          onClick={toggleFullscreen}
           type="button"
         >
-          <Maximize2 size={18} />
+          {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
         </button>
       </header>
 
